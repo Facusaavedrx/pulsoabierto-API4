@@ -4,9 +4,12 @@ import type { Cotizacion } from '../types/cripto'
 /**
  * La dirección de la API vive solamente en la capa de servicios.
  * Ningún componente de presentación la conoce.
+ * Los ids se toman del catálogo CRIPTOS para no repetir la lista a mano:
+ * si se agrega o quita una criptomoneda, la URL se actualiza sola.
  */
+const IDS_CONSULTADOS = CRIPTOS.map(cripto => cripto.id).join(',')
 const URL_API =
-  'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd'
+  `https://api.coingecko.com/api/v3/simple/price?ids=${IDS_CONSULTADOS}&vs_currencies=usd`
 
 /** Estructura que devuelve CoinGecko: { bitcoin: { usd: 63725 }, ... } */
 export type RespuestaCoinGecko = Partial<Record<string, { usd?: number }>>

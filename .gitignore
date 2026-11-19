@@ -3,3 +3,11 @@ dist
 *.local
 .vite
 coverage
+# Variables de entorno locales y carpeta de Netlify CLI
+.env
+.env.*
+.netlify
+# Archivos del sistema y del editor
+.DS_Store
+Thumbs.db
+*.log

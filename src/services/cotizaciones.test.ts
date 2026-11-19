@@ -10,7 +10,9 @@ describe('D. Servicio obtenerCotizaciones', () => {
     const resultado = await obtenerCotizaciones()
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
-    expect(fetchMock.mock.calls[0][0]).toContain('api.coingecko.com/api/v3/simple/price')
+    expect(fetchMock.mock.calls[0][0]).toBe(
+      'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd'
+    )
     expect(resultado).toEqual([
       expect.objectContaining({ id: 'bitcoin', nombre: 'Bitcoin', simbolo: 'BTC', precioUsd: 63725 }),
       expect.objectContaining({ id: 'ethereum', nombre: 'Ethereum', simbolo: 'ETH', precioUsd: 1775 }),

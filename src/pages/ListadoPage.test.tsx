@@ -83,6 +83,30 @@ describe('B. Consulta de datos', () => {
   })
 })
 
+describe('Validación del formulario', () => {
+  it('rechaza caracteres no permitidos, muestra el error y se recupera al corregir', async () => {
+    simularFetch().mockResolvedValue(respuestaFalsa(RESPUESTA_OK))
+    const usuario = userEvent.setup()
+    renderizarApp('/')
+
+    await screen.findByText('Mostrando 3 de 3 criptomonedas')
+    const campo = screen.getByLabelText('Buscar criptomoneda')
+    expect(campo).toHaveAttribute('aria-invalid', 'false')
+
+    await usuario.type(campo, 'btc$')
+
+    expect(campo).toHaveAttribute('aria-invalid', 'true')
+    expect(screen.getByText('Usá solo letras, números o espacios (máximo 30 caracteres).')).toBeInTheDocument()
+    expect(screen.getByText('Mostrando 0 de 3 criptomonedas')).toBeInTheDocument()
+
+    await usuario.type(campo, '{Backspace}')
+
+    expect(campo).toHaveAttribute('aria-invalid', 'false')
+    expect(screen.queryByText(/Usá solo letras/)).not.toBeInTheDocument()
+    expect(screen.getByText('Mostrando 1 de 3 criptomonedas')).toBeInTheDocument()
+  })
+})
+
 describe('Consulta vigente', () => {
   it('cancela la solicitud en curso cuando la vista se desmonta', () => {
     let senal: AbortSignal | undefined

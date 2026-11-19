@@ -36,6 +36,11 @@ const Input = styled.input`
   border-radius: 10px;
   border: none;
 `
+const Ayuda = styled.p`
+  margin: 8px 0 0;
+  color: #ffb4ae;
+  font-weight: 700;
+`
 const Check = styled.label`
   display: flex;
   align-items: center;
@@ -50,6 +55,10 @@ const Lista = styled.ul`
   gap: 1rem;
 `
 
+/** Solo letras (con acentos), números y espacios; hasta 30 caracteres. */
+const PATRON_BUSQUEDA = /^[\p{L}\p{N} ]{0,30}$/u
+const MENSAJE_BUSQUEDA_INVALIDA = 'Usá solo letras, números o espacios (máximo 30 caracteres).'
+
 function ListadoPage () {
   const { estado, volverAConsultar } = useCotizaciones()
   // Estado local del formulario controlado: solo lo usa esta página.
@@ -60,8 +69,9 @@ function ListadoPage () {
   const cargando = estado.tipo === 'cargando'
 
   // Datos derivados: se calculan en cada render, no se guardan en estado.
+  const busquedaValida = PATRON_BUSQUEDA.test(busqueda)
   const termino = busqueda.trim().toLowerCase()
-  const visibles = estado.tipo === 'exito'
+  const visibles = estado.tipo === 'exito' && busquedaValida
     ? estado.datos.filter(c =>
       (c.nombre.toLowerCase().includes(termino) || c.simbolo.toLowerCase().includes(termino)) &&
       (!soloFavoritos || favoritos.includes(c.id)))
@@ -81,7 +91,10 @@ function ListadoPage () {
             placeholder='Ej.: Bitcoin o BTC'
             value={busqueda}
             onChange={e => setBusqueda(e.target.value)}
+            aria-invalid={!busquedaValida}
+            aria-describedby={busquedaValida ? undefined : 'error-busqueda'}
           />
+          {!busquedaValida && <Ayuda id='error-busqueda' role='alert'>{MENSAJE_BUSQUEDA_INVALIDA}</Ayuda>}
           <Check>
             <input type='checkbox' checked={soloFavoritos} onChange={e => setSoloFavoritos(e.target.checked)} />
             Mostrar solo favoritos
