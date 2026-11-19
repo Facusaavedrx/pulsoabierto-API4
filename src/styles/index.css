@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: #0d2235;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+}
+
+a { color: #66a2fe; }
+
+:focus-visible {
+  outline: 3px solid #ffd166;
+  outline-offset: 3px;
+}
