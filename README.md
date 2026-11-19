@@ -3,7 +3,7 @@
 Aplicación web que consulta en vivo los precios en dólares de **Bitcoin, Ethereum y Solana** usando la API pública de [CoinGecko](https://www.coingecko.com/). Permite buscar y filtrar criptomonedas, ver el detalle de cada una y marcar favoritas, que se conservan aunque se recargue la página.
 
 **Aplicación publicada en Netlify:** https://URL-PENDIENTE.netlify.app
-**Repositorio:** https://github.com/Facusaavedrx/pulso-abierto
+**Repositorio:** https://github.com/Facusaavedrx/pulsoabierto-API4
 
 ## Tecnologías principales
 
@@ -23,8 +23,8 @@ Aplicación web que consulta en vivo los precios en dólares de **Bitcoin, Ether
 ## Instalación y uso
 
 ```bash
-git clone https://github.com/Facusaavedrx/pulso-abierto.git
-cd pulso-abierto
+git clone https://github.com/Facusaavedrx/pulsoabierto-API4.git
+cd pulsoabierto-API4
 npm install          # instala las dependencias
 ```
 
@@ -69,7 +69,7 @@ La configuración está en `netlify.toml`, así que Netlify la toma automáticam
 - **Versión de Node:** 20
 - **Redirección SPA:** `/*  →  /index.html  (200)`. Sin esta regla, abrir o recargar una ruta como `/cripto/bitcoin` devolvería 404, porque ese archivo no existe en el servidor; con ella, Netlify entrega `index.html` y React Router muestra la vista correcta.
 
-Pasos: en Netlify, *Add new site → Import an existing project → GitHub*, elegir `Facusaavedrx/pulso-abierto`, comprobar que los valores anteriores aparezcan completados y presionar *Deploy*.
+Pasos: en Netlify, *Add new site → Import an existing project → GitHub*, elegir `Facusaavedrx/pulsoabierto-API4`, comprobar que los valores anteriores aparezcan completados y presionar *Deploy*.
 
 ## Revisión de la versión final
 
