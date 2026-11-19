@@ -2,7 +2,7 @@
 
 Aplicación web que consulta en vivo los precios en dólares de **Bitcoin, Ethereum y Solana** usando la API pública de [CoinGecko](https://www.coingecko.com/). Permite buscar y filtrar criptomonedas, ver el detalle de cada una y marcar favoritas, que se conservan aunque se recargue la página.
 
-**Aplicación publicada en Netlify:** https://URL-PENDIENTE.netlify.app
+**Aplicación publicada en Netlify:** https://pulso-abierto-api4.netlify.app
 **Repositorio:** https://github.com/Facusaavedrx/pulsoabierto-API4
 
 ## Tecnologías principales
@@ -99,5 +99,6 @@ Pasos: en Netlify, *Add new site → Import an existing project → GitHub*, ele
 | Lint | El proyecto no tiene script de lint |
 | Build generado (`npm run build`) | Correcto, salida en `dist/` |
 | Preview comprobado (`npm run preview`) | Carga, consulta de datos, navegación, recarga de detalle, favoritos, formulario y vista móvil/escritorio correctos; sin errores bloqueantes en consola |
-| Despliegue realizado | Netlify: https://URL-PENDIENTE.netlify.app |
+| Despliegue realizado | Netlify, desde la rama `main` de este repositorio: https://pulso-abierto-api4.netlify.app |
+| Comprobación en la URL pública | La aplicación carga, consulta la API, navega al detalle, abre o recarga rutas de detalle, conserva favoritos, el formulario funciona y mantiene el diseño responsivo |
 | Fecha de verificación | 19/11/2026 |
